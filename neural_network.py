@@ -16,7 +16,7 @@ class NN101():
         self.nabla_weight_1 = 2 * np.random.random((4, 2)) - 1
         self.nabla_weight_2 = 2 * np.random.random((1, 4)) - 1
     
-    def sigmoid (self,x,deriv=False):
+    def sigmoid (self, x, deriv=False):
         if deriv:
             return x*(1-x)
         else:
@@ -26,7 +26,7 @@ class NN101():
     
     def operation (self, feed):
        #operates the weights on the input matrix, outputs number
-       return self.sigmoid(np.dot(self.weight_2, self.sigmoid_vector(np.dot(self.weight_1, feed)))[0][0])
+        return self.sigmoid(np.dot(self.weight_2, self.sigmoid_vector(np.dot(self.weight_1, feed)))[0][0]) # PROBLEM !!!!!
     
     def train_and_backpropogate (self, training_input_data, training_output_data ):
         for iteration in range(1000):
