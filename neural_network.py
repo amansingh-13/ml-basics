@@ -21,7 +21,7 @@ class NN101():
     else:
         return 1/(1+np.exp(-x))
     
-    sigmoid_vector = np.vectorize(sigmoid)
+    def sigmoid_vector = np.vectorize(sigmoid)
     
     def operation (self, feed):
        #operates the weights on the input matrix, outputs number
@@ -38,4 +38,5 @@ class NN101():
                                                   self.sigmoid(self.operation(training_input_data[i].tanspose()),True)*
                                                   self.sigmoid(np.matmul(self.weight_1,training_input_data[i].tanspose())[j]))
                                                   ])
+                    
  
