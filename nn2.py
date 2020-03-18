@@ -36,9 +36,9 @@ class NN101():
             for i in range (4):
                 cost=cost+(self.operation((np.array([training_input_data[i]])).T)-training_output_data[i][0])**2
                 for j in range (4):
-                    #nabla_weight_2[0][j]+=(self.operation((np.array([training_input_data[i]])).T)-training_output_data[i][0])*\
-                    #sigmoid(self.operation((np.array([training_input_data[i]])).T),True)*\
-                    #sigmoid((np.dot(self.weight_1,((np.array([training_input_data[i]])).T)))[j][0])
+                    nabla_weight_2[0][j]+=(self.operation((np.array([training_input_data[i]])).T)-training_output_data[i][0])*\
+                    sigmoid(self.operation((np.array([training_input_data[i]])).T),True)*\
+                    sigmoid((np.dot(self.weight_1,((np.array([training_input_data[i]])).T)))[j][0])
                                       
                     nabla_weight_1[j][0]+=(self.operation((np.array([training_input_data[i]])).T)-training_output_data[i][0])*\
                     sigmoid(self.operation((np.array([training_input_data[i]])).T),True)*\
