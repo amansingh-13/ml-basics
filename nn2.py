@@ -17,7 +17,7 @@ class NN101():
         # understand its use later, kind of related to constructor ......
         np.random.seed(1)
         # initializing weights in range [-1,1] biases are ignored to avoid complexity
-        # figure out what 2 and -1 do here .......
+        # 2*[0,1]-1=[-1,1]
         self.weight_1 = 2 * np.random.random((4, 2)) - 1
         self.weight_2 = 2 * np.random.random((1, 4)) - 1
         self.nabla_weight_1 = 2 * np.random.random((4, 2)) - 1
