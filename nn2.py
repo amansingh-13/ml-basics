@@ -1,14 +1,14 @@
 import numpy as np
 training_input_data=np.array([[0,1],[1,0],[0,0],[1,1]])
 training_output_data=np.array([[0],[0],[0],[1]])
+# recreating AND
 def sigmoid (x, deriv=False):
     if deriv:
         return x*(1-x)
     else:
         return 1/(1+np.exp(-x))
-    
 sigmoid_vector = np.vectorize(sigmoid)
-# recreating AND
+
 
 
 
@@ -21,8 +21,6 @@ class NN101():
         self.weight_1 = 2 * np.random.random((4, 2)) - 1
         self.weight_2 = 2 * np.random.random((1, 4)) - 1
         
-    
-    
     
     def operation (self, feed):
        #operates the weights on the input matrix, outputs number
@@ -50,8 +48,6 @@ class NN101():
                     self.weight_2[0][j]*\
                     training_input_data[i][1]
   
-                    
-                        
             cost=cost/125
             # updating weights
             self.weight_1=np.add(self.weight_1,cost*nabla_weight_1)
@@ -59,6 +55,7 @@ class NN101():
         
 
         
+
 if __name__ == "__main__":
     nn=NN101()
     print(nn.weight_1)
