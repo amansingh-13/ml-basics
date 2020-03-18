@@ -27,7 +27,7 @@ class NN101():
     
     def operation (self, feed):
        #operates the weights on the input matrix, outputs number
-        return sigmoid(np.dot(self.weight_2, sigmoid_vector(np.dot(self.weight_1, feed)))) # PROBLEM !!!!!
+        return sigmoid(np.dot(self.weight_2, sigmoid_vector(np.dot(self.weight_1, feed)))) 
     
     def train_and_backpropogate (self, training_input_data, training_output_data ):
         for iteration in range(1000):
@@ -49,7 +49,7 @@ class NN101():
                                       (self.operation(training_input_data[i].transpose())-training_output_data[i])*
                                       sigmoid(self.operation(training_input_data[i].transpose()),True)*
                                       self.weight_2.transpose()[j]*
-                                      training_input_data[i].transpose()[1]          
+                                      training_input_data[i].transpose()[1]    # PROBLEM !!!!!      
                                       ]))
                         
         cost=cost/5
