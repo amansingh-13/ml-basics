@@ -20,42 +20,45 @@ class NN101():
         # 2*[0,1]-1=[-1,1]
         self.weight_1 = 2 * np.random.random((4, 2)) - 1
         self.weight_2 = 2 * np.random.random((1, 4)) - 1
-        self.nabla_weight_1 = 2 * np.random.random((4, 2)) - 1
-        self.nabla_weight_2 = 2 * np.random.random((1, 4)) - 1
+        
     
     
     
     def operation (self, feed):
        #operates the weights on the input matrix, outputs number
-        return sigmoid(np.dot(self.weight_2, sigmoid_vector(np.dot(self.weight_1, feed)))) 
+        return sigmoid(np.dot(self.weight_2, sigmoid_vector(np.dot(self.weight_1, feed))))
     
     def train_and_backpropogate (self, training_input_data, training_output_data ):
         for iteration in range(1000):
             cost=0
+            nabla_weight_1 = np.array([[0,0],[0,0],[0,0],[0,0]]) 
+            nabla_weight_2 = np.array([0,0,0,0])
             for i in range (4):
-                cost=cost+(self.operation(training_input_data[i].transpose())-training_output_data[i])**2
+                cost+=self.operation(training_input_data[i].transpose())-training_output_data[i]**2
                 for j in range (4):
-                    self.nabla_weight_2.transpose()[j]=np.add(self.nabla_weight_2.transpose()[j],
-                                      np.array([(self.operation(training_input_data[i].transpose())-training_output_data[i])*
+                    nabla_weight_2.transpose()[j]+=np.array([(self.operation(training_input_data[i].transpose())-training_output_data[i])*
                                       sigmoid(self.operation(training_input_data[i].transpose()),True)*
                                       sigmoid(np.dot(self.weight_1,training_input_data[i].transpose())[j])
-                                      ]))
+                                      ])
                     
-                    self.nabla_weight_1[j]=np.add(self.nabla_weight_1[j],
-                                      np.array([(self.operation(training_input_data[i].transpose())-training_output_data[i])*
+                    nabla_weight_1[j][0]+=np.array([(self.operation(training_input_data[i].transpose())-training_output_data[i])*
                                       sigmoid(self.operation(training_input_data[i].transpose()),True)*
                                       self.weight_2.transpose()[j]*
-                                      training_input_data[i].transpose()[0],
-                                      (self.operation(training_input_data[i].transpose())-training_output_data[i])*
+                                      training_input_data[i].transpose()[0]
+                                      ])
+                    
+                    nabla_weight_1[j][1]+=np.array([(self.operation(training_input_data[i].transpose())-training_output_data[i])*
                                       sigmoid(self.operation(training_input_data[i].transpose()),True)*
                                       self.weight_2.transpose()[j]*
-                                      training_input_data[i].transpose()[1]    # PROBLEM !!!!!      
-                                      ]))
+                                      training_input_data[i].transpose()[1]
+                                      ])
+                    
+                    
                         
-        cost=cost/5
-        # updating weights
-        weight_1=weight_1+cost*nabla_weight_1/25
-        weight_2=weight_2+cost*nabla_weight_2/25
+            cost=cost/125
+            # updating weights
+            self.weight_1+=cost*nabla_weight_1
+            self.weight_2+=cost*nabla_weight_2
         
 
         
@@ -69,5 +72,5 @@ if __name__ == "__main__":
     print(nn.weight_2)
     print("--------------")
     # testing
-    for i in range (4):
-        print(nn.operation(training_input_data[i].transpose()))
+    for m in range (4):
+        print(nn.operation(training_input_data[m].transpose()))
