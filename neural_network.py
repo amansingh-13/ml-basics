@@ -30,7 +30,7 @@ class NN101():
         for iteration in range(1000):
             cost=0
             nabla_weight_1 = np.array([[0,0],[0,0],[0,0],[0,0]]) 
-            nabla_weight_2 = np.array([0,0,0,0])
+            nabla_weight_2 = np.array([[0,0,0,0]])
             for i in range (4):
                 cost=cost+(self.operation((np.array([training_input_data[i]])).T)-training_output_data[i][0])**2
                 for j in range (4):
