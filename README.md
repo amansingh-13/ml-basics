@@ -1,3 +1,3 @@
 # ML basics
-*First attempts at making a neural networks*
+*First attempts at making/understanding a neural networks*
 
