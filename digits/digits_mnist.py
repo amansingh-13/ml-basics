@@ -26,6 +26,7 @@ model.fit(train_images, train_labels, epochs=7)
 
 test_loss, test_acc = model.evaluate(test_images,  test_labels, verbose=2)
 print("\nTest accuracy: %s " % test_acc)
+# this will help us ensure the saved model is okay for use by the gui
 
 model.save('digits/weights.h5')
 
