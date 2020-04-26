@@ -28,7 +28,7 @@ def draw(event):
     column*10, row*10, (column+1)*10, (row+2)*10, fill='white')
     img[row][column] = 0.917618446
     img[row+1][column] = 0.717618446
-    for j in [-1,0,1]:
+    for j in [-1,0,2]:
         for k in [-1,0,1]:
             if img[row+j][column+k]<0.7:
                 img[row+j][column+k] = 0.443565
